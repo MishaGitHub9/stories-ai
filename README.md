@@ -1,50 +1,77 @@
-# Welcome to your Expo app 👋
+# Storylish - AI Language Learning App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Storylish - це інтерактивний додаток для вивчення англійської мови з використанням штучного інтелекту. Додаток автоматично вибирає найкращу AI модель залежно від мови користувача.
 
-## Get started
+## 🚀 Особливості
 
-1. Install dependencies
+### Автоматичний вибір AI моделі
+- **Кириличний текст** → GPT-4o-mini (кращий для української мови)
+- **Англійський та інші мови** → Claude-3-5-haiku (швидкий та ефективний)
 
-   ```bash
-   npm install
-   ```
+### Функціональність
+- Інтерактивні діалоги для практики англійської
+- Автоматична генерація сценаріїв розмов
+- Підтримка різних рівнів складності (beginner, intermediate, advanced)
+- **Система резюме розмови** - ШІ пам'ятає контекст навіть при обрізанні повідомлень
+- Моніторинг використання та вартості API
 
-2. Start the app
+## 🛠️ Налаштування
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+### 1. Встановлення залежностей
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. Налаштування API ключів
+1. Скопіюйте `config/api.example.ts` як `config/api.ts`
+2. Додайте ваші API ключі:
+   - **Claude API**: https://console.anthropic.com/
+   - **OpenAI API**: https://platform.openai.com/api-keys
 
-## Learn more
+### 3. Запуск додатку
+```bash
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## 📱 Використання
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+1. **Виберіть тему** розмови (travel, business, romance, daily life, mystery, fantasy)
+2. **Виберіть рівень** складності (beginner, intermediate, advanced)
+3. **Почніть діалог** - AI автоматично вибере найкращу модель
+4. **Практикуйте** англійську в інтерактивному режимі
 
-## Join the community
+## 🔧 Технічні деталі
 
-Join our community of developers creating universal apps.
+### Детекція мови
+- Автоматичне визначення мови повідомлення
+- Підтримка кириличних символів (українська, російська)
+- Розпізнавання латинських символів (англійська, іспанська, французька)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Моніторинг
+- Відстеження використання токенів
+- Розрахунок вартості запитів
+- Статистика по моделях
+
+### Вартість
+- **Claude-3-5-haiku**: $0.25/1M input, $1.25/1M output
+- **GPT-4o-mini**: $0.15/1M input, $0.60/1M output
+
+## 📚 Документація
+
+- [API Setup Guide](API_SETUP.md) - Детальна інструкція по налаштуванню
+- [Database Setup](DATABASE_SETUP.md) - Налаштування бази даних
+- [Design Guide](NEW_DESIGN_GUIDE.md) - Гайд по дизайну
+- [Conversation Summary System](CONVERSATION_SUMMARY_SYSTEM.md) - Система резюме розмови
+
+## 🤝 Розробка
+
+Це [Expo](https://expo.dev) проект з використанням:
+- React Native
+- TypeScript
+- Supabase (база даних)
+- Anthropic Claude API
+- OpenAI GPT API
+
+## 📄 Ліцензія
+
+MIT License

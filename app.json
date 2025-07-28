@@ -1,22 +1,55 @@
 {
   "expo": {
-    "name": "storylish",
-    "slug": "storylish",
-    "version": "1.0.0",
+    "name": "Stories.ai",
+    "slug": "stories-ai",
+    "version": "1.0.8",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "storylish",
+    "icon": "./assets/images/icon1.png",
+    "scheme": "stories.ai",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mihadev.story.ai",
+      "buildNumber": "9",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLName": "stories.ai",
+            "CFBundleURLSchemes": ["stories.ai"]
+          }
+        ]
+      },
+      "associatedDomains": [
+        "applinks:stories.ai",
+        "applinks:mishagithub9.github.io"
+      ]
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.mihadev.story.ai",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "stories.ai"
+            },
+            {
+              "scheme": "https",
+              "host": "mishagithub9.github.io"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -33,10 +66,23 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      "expo-secure-store",
+      [
+        "react-native-iap",
+        {
+          "disableStoreKit2": true
+        }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "16052274-de55-4aae-a6bf-8132bd367c89"
+      }
     }
   }
 }

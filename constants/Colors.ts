@@ -3,24 +3,34 @@
  * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
  */
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
+const tintColorLight = '#8B5CF6'; // Purple accent
+const tintColorDark = '#A855F7';
 
 export const Colors = {
   light: {
-    text: '#11181C',
-    background: '#fff',
+    text: '#FFFFFF',
+    background: '#1E0B37', // Dark purple background
     tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
+    icon: '#9CA3AF',
+    tabIconDefault: '#6B7280',
+    tabIconSelected: '#FFFFFF',
+    tabBarBackground: '#1E0B37',
+    primaryPurple: '#8B5CF6',
+    secondaryPurple: '#A855F7',
+    border: '#4B5563',
+    inputBackground: '#374151',
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
+    text: '#FFFFFF',
+    background: '#1E0B37', // Dark purple background
     tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
+    icon: '#9CA3AF',
+    tabIconDefault: '#6B7280',
+    tabIconSelected: '#FFFFFF',
+    tabBarBackground: '#1E0B37',
+    primaryPurple: '#8B5CF6',
+    secondaryPurple: '#A855F7',
+    border: '#4B5563',
+    inputBackground: '#374151',
   },
 };
