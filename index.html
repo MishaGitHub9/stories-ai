@@ -1,109 +1,137 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stories.ai - Redirecting...</title>
+    <title>Stories.ai - Learn English through Stories</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1E0B37, #2D1B69, #8B5CF6);
-            color: white;
             margin: 0;
             padding: 20px;
+            background: linear-gradient(135deg, #1E0B37, #2D1B69, #8B5CF6);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
+            justify-content: center;
+            color: white;
         }
         .container {
-            max-width: 400px;
+            text-align: center;
+            max-width: 600px;
             padding: 40px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             backdrop-filter: blur(10px);
         }
         h1 {
-            font-size: 2em;
+            font-size: 3rem;
             margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
-        .spinner {
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top: 3px solid white;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .download-button {
+            display: inline-block;
+            background: #8B5CF6;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
         }
-        .info {
-            font-size: 0.9em;
-            opacity: 0.8;
-            margin-top: 20px;
+        .download-button:hover {
+            transform: scale(1.05);
+        }
+        .features {
+            margin-top: 40px;
+            text-align: left;
+        }
+        .feature {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        .feature::before {
+            content: "✨";
+            margin-right: 10px;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Stories.ai</h1>
-        <div class="spinner"></div>
-        <p>Redirecting to app...</p>
-        <div class="info">
-            If the app doesn't open automatically, please install Stories.ai from the App Store.
+        <p>Learn English through Interactive AI Stories</p>
+        
+        <a href="#" class="download-button" onclick="downloadApp()">
+            Download App
+        </a>
+        
+        <div class="features">
+            <div class="feature">Interactive AI conversations</div>
+            <div class="feature">Personalized learning experience</div>
+            <div class="feature">Multiple difficulty levels</div>
+            <div class="feature">Real-time feedback</div>
         </div>
     </div>
 
     <script>
-        // Отримуємо всі параметри з URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const accessToken = urlParams.get('access_token');
-        const refreshToken = urlParams.get('refresh_token');
-        const type = urlParams.get('type');
-        
-        console.log('URL Parameters:', { accessToken, refreshToken, type });
-        
-        // Перенаправляємо в додаток
-        if (accessToken && refreshToken && type === 'recovery') {
-            const appUrl = `stories.ai://auth/reset-password?access_token=${accessToken}&refresh_token=${refreshToken}&type=${type}`;
-            console.log('Redirecting to:', appUrl);
+        function downloadApp() {
+            // Detect platform and redirect accordingly
+            const userAgent = navigator.userAgent;
             
-            // Спробуємо відкрити додаток
-            window.location.href = appUrl;
-            
-            // Резервний варіант - показуємо інструкції через 3 секунди
-            setTimeout(() => {
-                document.querySelector('.container').innerHTML = `
-                    <h1>Stories.ai</h1>
-                    <p>Tap the link below to reset your password:</p>
-                    <a href="${appUrl}" style="color: white; text-decoration: underline; font-size: 1.2em;">
-                        Open in Stories.ai
-                    </a>
-                    <div class="info">
-                        If the app doesn't open, please install Stories.ai from the App Store first.
-                    </div>
-                `;
-            }, 3000);
-            
-        } else {
-            // Невалідне посилання
-            document.querySelector('.container').innerHTML = `
-                <h1>Stories.ai</h1>
-                <p style="color: #ff6b6b;">Invalid reset link</p>
-                <div class="info">
-                    Please request a new password reset from the app.
-                </div>
-            `;
+            if (/iPhone|iPad|iPod/.test(userAgent)) {
+                // iOS - redirect to App Store or TestFlight
+                window.location.href = 'https://apps.apple.com/app/stories-ai/id123456789';
+            } else if (/Android/.test(userAgent)) {
+                // Android - redirect to Google Play
+                window.location.href = 'https://play.google.com/store/apps/details?id=com.mihadev.story.ai';
+            } else {
+                // Desktop - show message
+                alert('Stories.ai is available on iOS and Android devices. Please visit this page on your mobile device.');
+            }
         }
         
-        // Додаткова обробка для різних сценаріїв
-        window.addEventListener('beforeunload', () => {
-            console.log('Page is being closed - likely app opened successfully');
+        // Handle deep link redirects
+        window.addEventListener('load', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const path = window.location.pathname;
+            
+            // Check if this is a password reset link
+            if (path.includes('/auth/reset-password') || urlParams.get('type') === 'recovery') {
+                const accessToken = urlParams.get('access_token');
+                const refreshToken = urlParams.get('refresh_token');
+                const type = urlParams.get('type');
+                
+                if (accessToken && refreshToken && type === 'recovery') {
+                    // Try to open in app
+                    const appUrl = `stories.ai://auth/reset-password?access_token=${accessToken}&refresh_token=${refreshToken}&type=${type}`;
+                    
+                    // Create a hidden iframe to trigger the app
+                    const iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.src = appUrl;
+                    document.body.appendChild(iframe);
+                    
+                    // Fallback message
+                    setTimeout(() => {
+                        document.body.innerHTML = `
+                            <div class="container">
+                                <h1>Password Reset</h1>
+                                <p>Opening Stories.ai app...</p>
+                                <p>If the app doesn't open automatically, please make sure Stories.ai is installed on your device.</p>
+                                <a href="${appUrl}" class="download-button">Open in App</a>
+                            </div>
+                        `;
+                    }, 2000);
+                }
+            }
         });
     </script>
 </body>
