@@ -22,7 +22,7 @@
         ]
       },
       "associatedDomains": [
-        "applinks:stories.ai"
+        "applinks:mishagithub9.github.io"
       ]
     },
     "android": {
@@ -39,7 +39,7 @@
           "data": [
             {
               "scheme": "https",
-              "host": "stories.ai"
+              "host": "mishagithub9.github.io"
             }
           ],
           "category": ["BROWSABLE", "DEFAULT"]
