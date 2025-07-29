@@ -83,19 +83,8 @@
 
     <script>
         function downloadApp() {
-            // Detect platform and redirect accordingly
-            const userAgent = navigator.userAgent;
-            
-            if (/iPhone|iPad|iPod/.test(userAgent)) {
-                // iOS - redirect to App Store or TestFlight
-                window.location.href = 'https://apps.apple.com/app/stories-ai/id123456789';
-            } else if (/Android/.test(userAgent)) {
-                // Android - redirect to Google Play
-                window.location.href = 'https://play.google.com/store/apps/details?id=com.mihadev.story.ai';
-            } else {
-                // Desktop - show message
-                alert('Stories.ai is available on iOS and Android devices. Please visit this page on your mobile device.');
-            }
+            // Show message that app is coming soon
+            alert('Stories.ai app is coming soon! Currently in development.');
         }
         
         // Handle deep link redirects
