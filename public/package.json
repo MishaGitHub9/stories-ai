@@ -1,9 +1,0 @@
-{
-  "name": "stories-ai-web",
-  "version": "1.0.0",
-  "description": "Stories.ai web redirector",
-  "main": "index.html",
-  "scripts": {
-    "start": "echo 'Static site - no build needed'"
-  }
-} 

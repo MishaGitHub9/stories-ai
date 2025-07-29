@@ -2,7 +2,7 @@
   "expo": {
     "name": "Stories.ai",
     "slug": "stories-ai",
-    "version": "1.0.8",
+    "version": "1.0.7",
     "orientation": "portrait",
     "icon": "./assets/images/icon1.png",
     "scheme": "stories.ai",
@@ -11,7 +11,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.mihadev.story.ai",
-      "buildNumber": "9",
+      "buildNumber": "8",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "CFBundleURLTypes": [
@@ -22,8 +22,7 @@
         ]
       },
       "associatedDomains": [
-        "applinks:stories.ai",
-        "applinks:mishagithub9.github.io"
+        "applinks:stories.ai"
       ]
     },
     "android": {
@@ -41,10 +40,6 @@
             {
               "scheme": "https",
               "host": "stories.ai"
-            },
-            {
-              "scheme": "https",
-              "host": "mishagithub9.github.io"
             }
           ],
           "category": ["BROWSABLE", "DEFAULT"]

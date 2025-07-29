@@ -44,3 +44,6 @@ config/api.ts
 .env.local
 .env.production
 .vercel
+
+# Local Netlify folder
+.netlify
