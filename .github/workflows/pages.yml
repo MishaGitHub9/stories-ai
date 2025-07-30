@@ -1,8 +1,10 @@
-name: Deploy to GitHub Pages
+name: Deploy Password Reset Page to GitHub Pages
 
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'index.html'
   workflow_dispatch:
 
 permissions:

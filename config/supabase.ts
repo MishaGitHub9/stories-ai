@@ -1,19 +1,24 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createClient } from '@supabase/supabase-js';
+import { Platform } from 'react-native';
 
-// ⚠️ ЗАМІНІТЬ ЦІ ЗНАЧЕННЯ НА ВАШІ РЕАЛЬНІ ДАНІ З SUPABASE
+// ✅ НАЛАШТУЙТЕ ЦІ ЗНАЧЕННЯ ПІСЛЯ СТВОРЕННЯ НОВОГО ПРОЕКТУ SUPABASE
 // 1. Перейдіть до Settings → API у вашому проекті Supabase
 // 2. Скопіюйте Project URL та anon public ключ
 // 3. Вставте їх нижче:
-const supabaseUrl = 'https://ruehvguvzoshymdjlgda.supabase.co'; // https://your-project.supabase.co
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1ZWh2Z3V2em9zaHltZGpsZ2RhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyMDA1MDAsImV4cCI6MjA2ODc3NjUwMH0.e1jenwylac7T0AAj8YPqc6gtNJom8GFCTnL1AIaSJsM'; // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+const supabaseUrl = 'https://lkidcfdazjdhtykxiafp.supabase.co';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxraWRjZmRhempkaHR5a3hpYWZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM4MTAzMzEsImV4cCI6MjA2OTM4NjMzMX0.PA_4fAgYn2TV3_-DkmNFFRDYYRDCggeIPMWxphSlT70';
+
+// Web redirect URL для відновлення паролю через GitHub Pages
+export const WEB_REDIRECT_URL = 'https://mishagithub9.github.io/stories-ai';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
-    storage: AsyncStorage,
+    storage: Platform.OS === 'web' ? localStorage : AsyncStorage,
     autoRefreshToken: true,
     persistSession: true,
-    detectSessionInUrl: false,
+    detectSessionInUrl: Platform.OS === 'web',
+    flowType: 'pkce',
   },
 });
 

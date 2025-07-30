@@ -22,7 +22,7 @@
         ]
       },
       "associatedDomains": [
-        "applinks:mishagithub9.github.io"
+        "applinks:storylish-mxwlt1w0g-ms-projects-2554a4d0.vercel.app"
       ]
     },
     "android": {
@@ -39,7 +39,7 @@
           "data": [
             {
               "scheme": "https",
-              "host": "mishagithub9.github.io"
+              "host": "storylish-mxwlt1w0g-ms-projects-2554a4d0.vercel.app"
             }
           ],
           "category": ["BROWSABLE", "DEFAULT"]

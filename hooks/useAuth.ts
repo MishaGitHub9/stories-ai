@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '../config/supabase';
+import { supabase, WEB_REDIRECT_URL } from '../config/supabase';
 import { AuthState } from '../types/auth';
 
 export const useAuth = () => {
@@ -110,7 +110,7 @@ export const useAuth = () => {
   const resetPassword = async (email: string) => {
     try {
       const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: 'stories.ai://reset-password',
+        redirectTo: WEB_REDIRECT_URL,
       });
       
       if (error) throw error;

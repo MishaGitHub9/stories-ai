@@ -1,105 +1,52 @@
-# Налаштування GitHub Pages для Stories.ai
+# 🚀 GitHub Pages налаштування
 
-## 1. Створення GitHub репозиторію
+## Що робити:
 
-1. **Створіть новий репозиторій на GitHub:**
-   - Назва: `stories-ai` або `storylish`
-   - **ВАЖЛИВО:** Назва з крапкою "Stories.ai" може викликати проблеми в URL
+### 1. Створіть GitHub репозиторій
+1. Перейдіть до [GitHub](https://github.com)
+2. Натисніть **"New repository"**
+3. Назва: `stories-ai-password-reset`
+4. Публічний репозиторій
+5. Натисніть **"Create repository"**
 
-2. **Додайте remote:**
-```bash
-git remote add origin https://github.com/YOUR_USERNAME/stories-ai.git
-git branch -M main
-git push -u origin main
-```
+### 2. Завантажте файли
+1. Скопіюйте файл `index.html` з цього проекту
+2. Завантажте його в корінь вашого GitHub репозиторію
 
-## 2. Активація GitHub Pages
-
+### 3. Налаштуйте GitHub Pages
 1. Перейдіть до **Settings** → **Pages**
-2. **Source:** Deploy from a branch
-3. **Branch:** main
-4. **Folder:** /docs
-5. Натисніть **Save**
+2. **Source**: Deploy from a branch
+3. **Branch**: main
+4. **Folder**: / (root)
+5. Натисніть **"Save"**
 
-## 3. Отримання URL
-
-Після активації ви отримаєте URL:
+### 4. Отримайте URL
+Через кілька хвилин ви отримаєте URL типу:
 ```
-https://YOUR_USERNAME.github.io/stories-ai
-```
-
-## 4. Оновлення app.json
-
-Замініть `username` на ваш GitHub username в файлі `app.json`:
-```json
-{
-  "associatedDomains": [
-    "applinks:YOUR_USERNAME.github.io"
-  ],
-  "intentFilters": [
-    {
-      "data": [
-        {
-          "scheme": "https",
-          "host": "YOUR_USERNAME.github.io"
-        }
-      ]
-    }
-  ]
-}
+https://your-username.github.io/stories-ai-password-reset
 ```
 
-## 5. Налаштування Supabase
+### 5. Налаштуйте Supabase
+В Supabase Dashboard → **Authentication** → **URL Configuration**:
 
-В Supabase Dashboard → Authentication → URL Configuration:
-
-**Site URL:**
 ```
-https://YOUR_USERNAME.github.io/stories-ai
-```
-
-**Redirect URLs:**
-```
-stories.ai://auth/reset-password
-https://YOUR_USERNAME.github.io/stories-ai/auth/reset-password.html
+Site URL: https://your-username.github.io/stories-ai-password-reset
+Redirect URLs:
+- https://your-username.github.io/stories-ai-password-reset
 ```
 
-## 6. Приклад для вашого репозиторію
+## Переваги GitHub Pages:
 
-Якщо ваш GitHub username - `mihadev`, то:
+✅ **Безкоштовно** - немає обмежень  
+✅ **Без авторизації** - доступно всім  
+✅ **Швидко** - CDN по всьому світу  
+✅ **Надійно** - від GitHub  
 
-**Site URL:**
-```
-https://mihadev.github.io/stories-ai
-```
+## Тестування:
 
-**Redirect URLs:**
-```
-stories.ai://auth/reset-password
-https://mihadev.github.io/stories-ai/auth/reset-password.html
-```
+1. **Відправте запит** на відновлення паролю
+2. **Перевірте email** та клікніть на посилання
+3. **Введіть новий пароль** на веб-сторінці
+4. **Перевірте**, що пароль оновився
 
-## 7. Тестування
-
-1. **Пуш коду:**
-```bash
-git add .
-git commit -m "Setup GitHub Pages"
-git push origin main
-```
-
-2. **Перевірте сайт:** Відкрийте ваш GitHub Pages URL
-
-3. **Тестуйте deep link:** Додайте параметри для тестування:
-```
-https://YOUR_USERNAME.github.io/stories-ai/auth/reset-password.html?access_token=test&refresh_token=test&type=recovery
-```
-
-## 8. Що робити з назвою "Stories.ai"
-
-Оскільки GitHub не підтримує крапки в URL, рекомендується:
-- **Репозиторій:** `stories-ai` або `storylish`
-- **URL:** `username.github.io/stories-ai`
-- **Додаток:** залишається `Stories.ai`
-
-Це не вплине на функціональність! 
+**Це найпростіше рішення! 🎉** 

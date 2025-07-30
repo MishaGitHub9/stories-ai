@@ -1,127 +1,559 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stories.ai - Learn English through Stories</title>
+    <title>Stories.ai - Відновлення пароля</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #1E0B37, #2D1B69, #8B5CF6);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: #333;
+            padding: 20px;
         }
+        
         .container {
-            text-align: center;
-            max-width: 600px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
             padding: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
-        p {
-            font-size: 1.2rem;
+        
+        .logo {
+            font-size: 36px;
+            font-weight: bold;
             margin-bottom: 30px;
-            opacity: 0.9;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .download-button {
-            display: inline-block;
-            background: #8B5CF6;
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 12px;
+        
+        .title {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #2d3748;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #718096;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .input-group {
+            text-align: left;
+            position: relative;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.2s;
+            color: #2d3748;
+            font-size: 14px;
         }
-        .download-button:hover {
-            transform: scale(1.05);
+        
+        .input-wrapper {
+            position: relative;
         }
-        .features {
-            margin-top: 40px;
+        
+        .input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            background: #f7fafc;
+            color: #2d3748;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .input:focus {
+            border-color: #667eea;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .input::placeholder {
+            color: #a0aec0;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #a0aec0;
+            font-size: 18px;
+            padding: 4px;
+        }
+        
+        .password-toggle:hover {
+            color: #667eea;
+        }
+        
+        .password-strength {
+            margin-top: 8px;
+            display: flex;
+            gap: 4px;
+        }
+        
+        .strength-bar {
+            flex: 1;
+            height: 4px;
+            border-radius: 2px;
+            background: #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .strength-bar.weak { background: #fc8181; }
+        .strength-bar.medium { background: #f6ad55; }
+        .strength-bar.strong { background: #68d391; }
+        
+        .strength-text {
+            font-size: 12px;
+            color: #718096;
+            margin-top: 4px;
+        }
+        
+        .button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            font-family: inherit;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .error {
+            background: #fed7d7;
+            border: 1px solid #feb2b2;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            color: #c53030;
+        }
+        
+        .success {
+            background: #c6f6d5;
+            border: 1px solid #9ae6b4;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            color: #22543d;
+        }
+        
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e2e8f0;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .requirements {
+            font-size: 12px;
+            color: #718096;
+            margin-top: 8px;
             text-align: left;
         }
-        .feature {
-            margin: 15px 0;
-            display: flex;
-            align-items: center;
+        
+        .app-button {
+            background: #2d3748;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 16px;
+            font-family: inherit;
         }
-        .feature::before {
-            content: "✨";
-            margin-right: 10px;
-            font-size: 1.2rem;
+        
+        .app-button:hover {
+            background: #4a5568;
+            transform: translateY(-1px);
+        }
+        
+        .icon {
+            margin-right: 8px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Stories.ai</h1>
-        <p>Learn English through Interactive AI Stories</p>
+        <div class="logo">Stories.ai</div>
         
-        <a href="#" class="download-button" onclick="downloadApp()">
-            Download App
-        </a>
+        <div id="form" class="form">
+            <div class="title">Відновлення пароля</div>
+            <div class="subtitle">Введіть новий пароль для вашого акаунту</div>
+            
+            <div class="input-group">
+                <label for="password">Новий пароль</label>
+                <div class="input-wrapper">
+                    <input 
+                        type="password" 
+                        id="password" 
+                        class="input" 
+                        placeholder="Введіть новий пароль"
+                        minlength="6"
+                    >
+                    <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                        👁️
+                    </button>
+                </div>
+                <div class="password-strength" id="strength-bars">
+                    <div class="strength-bar"></div>
+                    <div class="strength-bar"></div>
+                    <div class="strength-bar"></div>
+                    <div class="strength-bar"></div>
+                </div>
+                <div class="strength-text" id="strength-text">Введіть пароль</div>
+                <div class="requirements">Мінімум 6 символів</div>
+            </div>
+            
+            <div class="input-group">
+                <label for="confirmPassword">Підтвердження пароля</label>
+                <div class="input-wrapper">
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        class="input" 
+                        placeholder="Повторіть новий пароль"
+                        minlength="6"
+                    >
+                    <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                        👁️
+                    </button>
+                </div>
+            </div>
+            
+            <button id="submitBtn" class="button" onclick="resetPassword()">
+                Оновити пароль
+            </button>
+        </div>
         
-        <div class="features">
-            <div class="feature">Interactive AI conversations</div>
-            <div class="feature">Personalized learning experience</div>
-            <div class="feature">Multiple difficulty levels</div>
-            <div class="feature">Real-time feedback</div>
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <div class="subtitle">Оновлення пароля...</div>
+        </div>
+        
+        <div id="error" class="error" style="display: none;">
+            <div class="title">Помилка</div>
+            <div class="subtitle" id="errorMessage">Щось пішло не так</div>
+            <button class="button" onclick="showForm()">Спробувати знову</button>
+        </div>
+        
+        <div id="success" class="success" style="display: none;">
+            <div class="title">Успішно!</div>
+            <div class="subtitle">Ваш пароль було успішно оновлено</div>
+            <button class="app-button" onclick="openApp()">
+                <span class="icon">📱</span>Відкрити додаток
+            </button>
         </div>
     </div>
 
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script>
-        function downloadApp() {
-            // Show message that app is coming soon
-            alert('Stories.ai app is coming soon! Currently in development.');
-        }
+        // Global variables
+        let supabase = null;
         
-        // Handle deep link redirects
-        window.addEventListener('load', function() {
+        // Supabase configuration
+        const supabaseUrl = 'https://lkidcfdazjdhtykxiafp.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxraWRjZmRhempkaHR5a3hpYWZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM4MTAzMzEsImV4cCI6MjA2OTM4NjMzMX0.PA_4fAgYn2TV3_-DkmNFFRDYYRDCggeIPMWxphSlT70';
+
+        // Get URL parameters
+        function getUrlParams() {
             const urlParams = new URLSearchParams(window.location.search);
-            const path = window.location.pathname;
+            return {
+                access_token: urlParams.get('access_token'),
+                refresh_token: urlParams.get('refresh_token'),
+                type: urlParams.get('type')
+            };
+        }
+
+        // Toggle password visibility
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const button = input.nextElementSibling;
             
-            // Check if this is a password reset link
-            if (path.includes('/auth/reset-password') || urlParams.get('type') === 'recovery') {
-                const accessToken = urlParams.get('access_token');
-                const refreshToken = urlParams.get('refresh_token');
-                const type = urlParams.get('type');
-                
-                if (accessToken && refreshToken && type === 'recovery') {
-                    // Try to open in app
-                    const appUrl = `stories.ai://auth/reset-password?access_token=${accessToken}&refresh_token=${refreshToken}&type=${type}`;
-                    
-                    // Create a hidden iframe to trigger the app
-                    const iframe = document.createElement('iframe');
-                    iframe.style.display = 'none';
-                    iframe.src = appUrl;
-                    document.body.appendChild(iframe);
-                    
-                    // Fallback message
-                    setTimeout(() => {
-                        document.body.innerHTML = `
-                            <div class="container">
-                                <h1>Password Reset</h1>
-                                <p>Opening Stories.ai app...</p>
-                                <p>If the app doesn't open automatically, please make sure Stories.ai is installed on your device.</p>
-                                <a href="${appUrl}" class="download-button">Open in App</a>
-                            </div>
-                        `;
-                    }, 2000);
+            if (input.type === 'password') {
+                input.type = 'text';
+                button.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                button.textContent = '👁️';
+            }
+        }
+
+        // Check password strength
+        function checkPasswordStrength(password) {
+            const bars = document.querySelectorAll('.strength-bar');
+            const text = document.getElementById('strength-text');
+            
+            // Reset all bars
+            bars.forEach(bar => {
+                bar.className = 'strength-bar';
+            });
+            
+            if (!password) {
+                text.textContent = 'Введіть пароль';
+                return;
+            }
+            
+            let strength = 0;
+            let feedback = '';
+            
+            if (password.length >= 6) strength++;
+            if (password.length >= 8) strength++;
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            // Update bars
+            for (let i = 0; i < strength && i < 4; i++) {
+                if (strength <= 2) {
+                    bars[i].classList.add('weak');
+                    feedback = 'Слабкий пароль';
+                } else if (strength <= 3) {
+                    bars[i].classList.add('medium');
+                    feedback = 'Середній пароль';
+                } else {
+                    bars[i].classList.add('strong');
+                    feedback = 'Сильний пароль';
                 }
+            }
+            
+            text.textContent = feedback;
+        }
+
+        // Show form
+        function showForm() {
+            document.getElementById('form').style.display = 'flex';
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('success').style.display = 'none';
+        }
+
+        // Show loading
+        function showLoading() {
+            document.getElementById('form').style.display = 'none';
+            document.getElementById('loading').style.display = 'flex';
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('success').style.display = 'none';
+        }
+
+        // Show error
+        function showError(message) {
+            document.getElementById('form').style.display = 'none';
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('success').style.display = 'none';
+            document.getElementById('errorMessage').textContent = message;
+        }
+
+        // Show success
+        function showSuccess() {
+            document.getElementById('form').style.display = 'none';
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+        }
+
+        // Open app
+        function openApp() {
+            // Спробуємо відкрити додаток через deep link
+            window.location.href = 'stories.ai://';
+            
+            // Якщо deep link не спрацював, показуємо інструкції
+            setTimeout(() => {
+                const userAgent = navigator.userAgent.toLowerCase();
+                const isIOS = /iphone|ipad|ipod/.test(userAgent);
+                const isAndroid = /android/.test(userAgent);
+                
+                if (isIOS) {
+                    alert('Якщо додаток не відкрився автоматично, відкрийте додаток Stories.ai вручну з головного екрану.');
+                } else if (isAndroid) {
+                    alert('Якщо додаток не відкрився автоматично, відкрийте додаток Stories.ai вручну з головного екрану.');
+                } else {
+                    alert('Відкрийте додаток Stories.ai на вашому мобільному пристрої.');
+                }
+            }, 1000);
+        }
+
+        // Reset password function
+        async function resetPassword() {
+            if (!supabase) {
+                showError('Помилка ініціалізації. Будь ласка, оновіть сторінку.');
+                return;
+            }
+
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const params = getUrlParams();
+
+            // Validation
+            if (!password || !confirmPassword) {
+                showError('Будь ласка, заповніть всі поля');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showError('Паролі не збігаються');
+                return;
+            }
+
+            if (password.length < 6) {
+                showError('Пароль повинен містити мінімум 6 символів');
+                return;
+            }
+
+            if (!params.access_token || !params.refresh_token || params.type !== 'recovery') {
+                showError('Недійсне або застаріле посилання для відновлення. Запишіть нове.');
+                return;
+            }
+
+            showLoading();
+
+            try {
+                // Set session with tokens
+                const { error: sessionError } = await supabase.auth.setSession({
+                    access_token: params.access_token,
+                    refresh_token: params.refresh_token,
+                });
+
+                if (sessionError) {
+                    throw sessionError;
+                }
+
+                // Update password
+                const { error: updateError } = await supabase.auth.updateUser({
+                    password: password
+                });
+
+                if (updateError) {
+                    throw updateError;
+                }
+
+                showSuccess();
+            } catch (error) {
+                console.error('Error resetting password:', error);
+                
+                // Handle specific errors
+                if (error.message && error.message.includes('WebCrypto')) {
+                    showError('Ваш браузер не повністю підтримується. Спробуйте використати сучасний браузер як Chrome, Firefox або Safari.');
+                } else if (error.message && error.message.includes('invalid')) {
+                    showError('Недійсне або застаріле посилання для відновлення. Запишіть нове.');
+                } else {
+                    showError(error.message || 'Не вдалося оновити пароль. Спробуйте ще раз.');
+                }
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for Supabase script to load
+            if (typeof window.supabase === 'undefined') {
+                showError('Не вдалося завантажити Supabase. Перевірте підключення до інтернету та оновіть сторінку.');
+                return;
+            }
+
+            // Create Supabase client
+            try {
+                supabase = window.supabase.createClient(supabaseUrl, supabaseKey, {
+                    auth: {
+                        flowType: 'pkce',
+                        autoRefreshToken: true,
+                        persistSession: false,
+                        detectSessionInUrl: false
+                    }
+                });
+            } catch (error) {
+                console.error('Error creating Supabase client:', error);
+                showError('Не вдалося ініціалізувати автентифікацію. Оновіть сторінку.');
+                return;
+            }
+
+            // Check if we have valid tokens
+            const params = getUrlParams();
+            
+            if (!params.access_token || !params.refresh_token || params.type !== 'recovery') {
+                showError('Недійсне або застаріле посилання для відновлення пароля. Запишіть нове.');
+                return;
+            }
+
+            // Add password strength checker
+            document.getElementById('password').addEventListener('input', function() {
+                checkPasswordStrength(this.value);
+            });
+        });
+
+        // Enter key to submit
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                resetPassword();
             }
         });
     </script>
 </body>
-</html> 
+</html>
