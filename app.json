@@ -20,10 +20,7 @@
             "CFBundleURLSchemes": ["stories.ai"]
           }
         ]
-      },
-      "associatedDomains": [
-        "applinks:storylish-mxwlt1w0g-ms-projects-2554a4d0.vercel.app"
-      ]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -35,11 +32,9 @@
       "intentFilters": [
         {
           "action": "VIEW",
-          "autoVerify": true,
           "data": [
             {
-              "scheme": "https",
-              "host": "storylish-mxwlt1w0g-ms-projects-2554a4d0.vercel.app"
+              "scheme": "stories.ai"
             }
           ],
           "category": ["BROWSABLE", "DEFAULT"]

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { supabase, WEB_REDIRECT_URL } from '../config/supabase';
+import { supabase } from '../config/supabase';
 import { AuthState } from '../types/auth';
+import { UserProfile } from '../types/profile';
 
 export const useAuth = () => {
   const [authState, setAuthState] = useState<AuthState>({
@@ -33,6 +34,38 @@ export const useAuth = () => {
     return () => subscription.unsubscribe();
   }, []);
 
+  const sendMagicLink = async (email: string) => {
+    try {
+      const { data, error } = await supabase.auth.signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: 'stories.ai://auth/callback',
+        },
+      });
+      
+      if (error) throw error;
+      return { data, error: null };
+    } catch (error) {
+      return { data: null, error };
+    }
+  };
+
+  const getUserProfile = async (userId: string): Promise<UserProfile | null> => {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', userId)
+        .single();
+      
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+      return null;
+    }
+  };
+
   const signUpWithEmail = async (email: string, password: string) => {
     try {
       const { data, error } = await supabase.auth.signUp({
@@ -60,8 +93,6 @@ export const useAuth = () => {
       return { data: null, error };
     }
   };
-
-
 
   const signOut = async () => {
     try {
@@ -110,7 +141,7 @@ export const useAuth = () => {
   const resetPassword = async (email: string) => {
     try {
       const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: WEB_REDIRECT_URL,
+        redirectTo: 'stories.ai://auth/reset-password',
       });
       
       if (error) throw error;
@@ -135,6 +166,8 @@ export const useAuth = () => {
 
   return {
     ...authState,
+    sendMagicLink,
+    getUserProfile,
     signUpWithEmail,
     signInWithEmail,
     signOut,

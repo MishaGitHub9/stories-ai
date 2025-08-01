@@ -1,6 +1,6 @@
-import { TranslationLanguage } from '@/services/translation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
+import { TranslationLanguage } from '../services/translation';
 
 const TRANSLATION_LANGUAGE_KEY = 'selected_translation_language';
 

@@ -1,13 +1,13 @@
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useInAppPurchases } from '@/hooks/useInAppPurchases';
 import { useTranslationLanguage } from '@/hooks/useTranslationLanguage';
-import { TranslationLanguage } from '@/services/translation';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React from 'react';
 import { Alert, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useProfile } from '../../hooks/useProfile';
+import { TranslationLanguage } from '../../services/translation';
 
 export default function SettingsScreen() {
   const colorScheme = useColorScheme();

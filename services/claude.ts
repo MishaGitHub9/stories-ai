@@ -1,4 +1,4 @@
-import { CLAUDE_CONFIG, GPT_CONFIG, anthropic, detectLanguage, openai } from '@/config/api';
+import { CLAUDE_CONFIG, GPT_CONFIG, anthropic, detectLanguage, openai } from '../config';
 import { conversationSummaryService, type Message } from './conversationSummary';
 
 export interface ConversationContext {

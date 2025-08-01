@@ -1,18 +1,32 @@
 import { router } from 'expo-router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { AuthScreen } from '../components/auth/AuthScreen';
-import { ForgotPasswordScreen } from '../components/auth/ForgotPasswordScreen';
+import { MagicLinkAuthScreen } from '../components/auth/MagicLinkAuthScreen';
+import { WelcomeScreen } from '../components/auth/WelcomeScreen';
 import { ThemedView } from '../components/ThemedView';
+import { useAuth } from '../hooks/useAuth';
 
-type AuthScreenType = 'login' | 'forgot-password';
+type AuthScreenType = 'login' | 'welcome';
 
 export default function Auth() {
   const [currentScreen, setCurrentScreen] = useState<AuthScreenType>('login');
+  const { user, loading } = useAuth();
+
+  useEffect(() => {
+    // Якщо користувач авторизований, показуємо welcome screen
+    if (user && !loading) {
+      setCurrentScreen('welcome');
+    }
+  }, [user, loading]);
 
   const handleAuthSuccess = () => {
-    // Повертаємося до налаштувань після успішної авторизації
-    router.replace('/(tabs)/settings');
+    // Після успішної авторизації показуємо welcome screen
+    setCurrentScreen('welcome');
+  };
+
+  const handleContinueToApp = () => {
+    // Повертаємося до головного екрану після привітання
+    router.replace('/(tabs)');
   };
 
   const handleBackToSettings = () => {
@@ -20,28 +34,27 @@ export default function Auth() {
     router.replace('/(tabs)/settings');
   };
 
-  const handleForgotPassword = () => {
-    setCurrentScreen('forgot-password');
-  };
-
-  const handleBackToLogin = () => {
-    setCurrentScreen('login');
-  };
+  // Показуємо loading поки перевіряємо стан авторизації
+  if (loading) {
+    return (
+      <ThemedView style={styles.container}>
+        {/* Loading indicator буде показаний в WelcomeScreen */}
+      </ThemedView>
+    );
+  }
 
   return (
     <ThemedView style={styles.container}>
       {currentScreen === 'login' && (
-        <AuthScreen 
+        <MagicLinkAuthScreen 
           onAuthSuccess={handleAuthSuccess}
-          onForgotPassword={handleForgotPassword}
           onBack={handleBackToSettings}
         />
       )}
       
-      {currentScreen === 'forgot-password' && (
-        <ForgotPasswordScreen 
-          onBack={handleBackToLogin}
-          onSuccess={handleAuthSuccess}
+      {currentScreen === 'welcome' && user && (
+        <WelcomeScreen 
+          onContinue={handleContinueToApp}
         />
       )}
     </ThemedView>

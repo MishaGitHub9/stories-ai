@@ -1,4 +1,4 @@
-import { anthropic, CLAUDE_CONFIG } from '@/config/api';
+import { anthropic, CLAUDE_CONFIG } from '../config';
 
 export type TranslationLanguage = 'ukrainian' | 'german' | 'polish' | 'french' | 'spanish';
 

@@ -1,4 +1,4 @@
-import { anthropic } from '@/config/api';
+import { anthropic } from '../config';
 
 export interface ConversationSummary {
   keyTopics: string[];

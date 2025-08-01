@@ -4,13 +4,13 @@ import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useLimits } from '@/hooks/useLimits';
 import { useTranslationLanguage } from '@/hooks/useTranslationLanguage';
-import { claudeService, ConversationContext } from '@/services/claude';
-import { TranslationService } from '@/services/translation';
 import { Ionicons } from '@expo/vector-icons';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { claudeService, ConversationContext } from '../services/claude';
+import { TranslationService } from '../services/translation';
 
 // Simple component to render formatted text with bold, italic, and emojis
 const FormattedText = ({ text, style, colorScheme }: { text: string; style: any; colorScheme: any }) => {

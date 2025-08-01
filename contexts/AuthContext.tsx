@@ -1,8 +1,11 @@
 import React, { createContext, ReactNode, useContext } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { AuthState } from '../types/auth';
+import { UserProfile } from '../types/profile';
 
 interface AuthContextType extends AuthState {
+  sendMagicLink: (email: string) => Promise<{ data: any; error: any }>;
+  getUserProfile: (userId: string) => Promise<UserProfile | null>;
   signUpWithEmail: (email: string, password: string) => Promise<{ data: any; error: any }>;
   signInWithEmail: (email: string, password: string) => Promise<{ data: any; error: any }>;
   signOut: () => Promise<{ error: any }>;
